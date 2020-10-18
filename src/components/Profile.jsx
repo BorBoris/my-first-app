@@ -9,11 +9,11 @@ export class Profile extends React.Component{
     }
 
     componentDidMount() {
-        fetch("http://kotegra.beget.tech/getUserJSON")
-            .then(response=>response.text())
-            .then(info=>{
+        fetch("http://kotegra.beget.tech/getUser")
+            .then(response=>response.json())
+            .then(user=>{
                 this.setState({
-                    userName: info
+                    userName: user.name+" "+user.lastname
                 })
             });
     }
