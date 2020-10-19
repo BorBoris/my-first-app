@@ -4,12 +4,18 @@ export class Profile extends React.Component{
     constructor() {
         super();
         this.state = {
-            userName: "empty"
+            userName: ""
         }
     }
 
     componentDidMount() {
-        fetch("http://kotegra.beget.tech/getUser")
+        const formData = new FormData();
+        let userId = window.location.pathname.split("/")[2];
+        formData.append("userId",userId);
+        fetch("http://kotegra.beget.tech/getUser", {
+            method: "POST",
+            body: formData
+        })
             .then(response=>response.json())
             .then(user=>{
                 this.setState({
